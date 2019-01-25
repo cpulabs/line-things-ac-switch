@@ -1,11 +1,11 @@
 // User service UUID: Change this to your generated service UUID
-const USER_SERVICE_UUID         = '91E4E176-D0B9-464D-9FE4-52EE3E9F1552'; // SSR
+const USER_SERVICE_UUID         = 'ac5e8f4f-6dc1-471d-bb2d-6683c9983a12'; // SSR
 // User service characteristics
-const LED_CHARACTERISTIC_UUID   = 'E9062E71-9E62-4BC6-B0D3-35CDCD9B027B';
+const SSR_CHARACTERISTIC_UUID   = '4c9d9075-774c-49e4-a3dc-0d9632209005';
 
 // PSDI Service UUID: Fixed value for Developer Trial
-const PSDI_SERVICE_UUID         = 'E625601E-9E55-4597-A598-76018A0D293D'; // Device ID
-const PSDI_CHARACTERISTIC_UUID  = '26E2B12B-85F0-4F3F-9FDD-91D114270E6E';
+const PSDI_SERVICE_UUID         = 'e625601e-9e55-4597-a598-76018a0d293d'; // Device ID
+const PSDI_CHARACTERISTIC_UUID  = '26e2b12b-85f0-4f3f-9fdd-91d114270e6e';
 
 // UI settings
 let ledState = false; // true: LED on, false: LED off
@@ -189,7 +189,7 @@ function liffConnectToDevice(device) {
 
 function liffGetUserService(service) {
     // Toggle LED
-    service.getCharacteristic(LED_CHARACTERISTIC_UUID).then(characteristic => {
+    service.getCharacteristic(SSR_CHARACTERISTIC_UUID).then(characteristic => {
         window.ledCharacteristic = characteristic;
 
         // Switch off by default

@@ -7,17 +7,16 @@
 #define DEVICE_NAME "LINE BLE AC Switch"
 
 // User service UUID: Change this to your generated service UUID
-#define USER_SERVICE_UUID "91E4E176-D0B9-464D-9FE4-52EE3E9F1552"
+#define USER_SERVICE_UUID "ac5e8f4f-6dc1-471d-bb2d-6683c9983a12"
 // User service characteristics
-#define WRITE_CHARACTERISTIC_UUID "E9062E71-9E62-4BC6-B0D3-35CDCD9B027B"
-#define NOTIFY_CHARACTERISTIC_UUID "62FBD229-6EDD-4D1A-B554-5C4E1BB29169"
+#define WRITE_CHARACTERISTIC_UUID "4c9d9075-774c-49e4-a3dc-0d9632209005"
 
 // PSDI Service UUID: Fixed value for Developer Trial
-#define PSDI_SERVICE_UUID "E625601E-9E55-4597-A598-76018A0D293D"
-#define PSDI_CHARACTERISTIC_UUID "26E2B12B-85F0-4F3F-9FDD-91D114270E6E"
+#define PSDI_SERVICE_UUID "e625601e-9e55-4597-a598-76018a0d293d"
+#define PSDI_CHARACTERISTIC_UUID "26e2b12b-85f0-4f3f-9fdd-91d114270e6e"
 
 
-#define AC_SSR 2
+#define AC_SSR 16
 
 BLEServer* thingsServer;
 BLESecurity *thingsSecurity;
@@ -95,12 +94,6 @@ void setupServices(void) {
   writeCharacteristic->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
   writeCharacteristic->setCallbacks(new writeCallback());
 
-  notifyCharacteristic = userService->createCharacteristic(NOTIFY_CHARACTERISTIC_UUID, BLECharacteristic::PROPERTY_NOTIFY);
-  notifyCharacteristic->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
-  BLE2902* ble9202 = new BLE2902();
-  ble9202->setNotifications(true);
-  ble9202->setAccessPermissions(ESP_GATT_PERM_READ_ENCRYPTED | ESP_GATT_PERM_WRITE_ENCRYPTED);
-  notifyCharacteristic->addDescriptor(ble9202);
 
   // Setup PSDI Service
   psdiService = thingsServer->createService(PSDI_SERVICE_UUID);
